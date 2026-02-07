@@ -8,205 +8,150 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ------------------ GLOBAL ------------------ */
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    height:100vh;
+    background: radial-gradient(circle at top,#ffd6e0,#1a050d);
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+    color:#fff;
 }
 
-body {
-    margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle at top, #ffd6e0, #2a0714);
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    color: #fff;
+/* dreamy glow */
+body::before{
+    content:"";
+    position:absolute;
+    width:700px;height:700px;
+    background:radial-gradient(circle,rgba(255,120,160,.35),transparent);
+    top:5%;left:50%;
+    transform:translateX(-50%);
+    animation:glow 12s infinite alternate;
+}
+@keyframes glow{
+    to{transform:translateX(-50%) translateY(60px)}
 }
 
-/* Soft romantic glow */
-body::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(255,105,135,0.35), transparent);
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: glowMove 10s infinite alternate;
+section{
+    position:absolute;
+    width:100%;height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:opacity 1.6s ease, transform 1.6s ease;
+    z-index:2;
 }
 
-@keyframes glowMove {
-    to { transform: translateX(-50%) translateY(40px); }
+/* ROSE */
+.rose{
+    font-size:105px;
+    animation:float 4s ease-in-out infinite,bloom 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 30px rgba(255,0,90,.7));
+}
+@keyframes float{50%{transform:translateY(-22px)}}
+@keyframes bloom{50%{transform:scale(1.1)}}
+
+/* INTRO TEXT */
+.intro-text{
+    max-width:760px;
+    font-size:1.35rem;
+    line-height:1.9;
+    margin:35px auto;
+    padding:0 15px;
+    min-height:120px;
 }
 
-section {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transition: opacity 1.5s ease;
-    z-index: 2;
+/* BUTTON */
+button{
+    margin-top:35px;
+    padding:15px 44px;
+    border:none;
+    border-radius:45px;
+    background:linear-gradient(135deg,#ff5c8a,#c9184a);
+    color:#fff;
+    font-size:1.1rem;
+    cursor:pointer;
+    box-shadow:0 14px 38px rgba(0,0,0,.5);
+    transition:.3s;
+    -webkit-tap-highlight-color:transparent;
+}
+button:hover{transform:scale(1.12)}
+
+/* LETTER */
+#letter{opacity:0;pointer-events:none;transform:scale(.95)}
+
+.card{
+    background:rgba(255,255,255,.17);
+    backdrop-filter:blur(18px);
+    padding:70px;
+    border-radius:34px;
+    max-width:850px;
+    margin:0 15px;
+    box-shadow:0 0 80px rgba(255,0,100,.6);
 }
 
-/* ------------------ INTRO SECTION ------------------ */
-.rose {
-    font-size: 100px;
-    animation: float 3s ease-in-out infinite, bloom 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 25px rgba(255, 0, 80, 0.6));
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:4.6rem;
+    margin-bottom:28px;
+    color:#ffe6ee;
 }
 
-@keyframes float {
-    50% { transform: translateY(-20px); }
+.letter-text{
+    font-size:1.22rem;
+    line-height:2;
 }
 
-@keyframes bloom {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+.signature{
+    margin-top:42px;
+    font-family:'Great Vibes',cursive;
+    font-size:2.7rem;
+    color:#ffd1dc;
 }
 
-.intro-text {
-    max-width: 750px;
-    font-size: 1.35rem;
-    line-height: 1.9;
-    margin: 35px auto;
-    padding: 0 15px;
+/* PETALS */
+.petal{
+    position:absolute;
+    top:-50px;
+    animation:fall linear infinite;
+    opacity:.85;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg)}
 }
 
-/* Button */
-button {
-    margin-top: 35px;
-    padding: 15px 42px;
-    border: none;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #ff5c8a, #c9184a);
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.45);
-    transition: transform 0.3s, box-shadow 0.3s;
-    -webkit-tap-highlight-color: transparent;
+/* HEARTS */
+.heart{
+    position:absolute;
+    color:rgba(255,180,200,.35);
+    animation:rise linear infinite;
 }
-button:hover {
-    transform: scale(1.12);
-    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+@keyframes rise{
+    from{transform:translateY(110vh)}
+    to{transform:translateY(-10vh)}
 }
 
-/* ------------------ LETTER SECTION ------------------ */
-#letter {
-    opacity: 0;
-    pointer-events: none;
+/* RESPONSIVE */
+@media(max-width:768px){
+    .rose{font-size:72px}
+    .intro-text{font-size:1.1rem}
+    h1{font-size:3.3rem}
+    .card{padding:42px 26px}
+    .letter-text{font-size:1.05rem}
+    .signature{font-size:2.1rem}
 }
-
-.card {
-    background: rgba(255,255,255,0.16);
-    backdrop-filter: blur(18px);
-    padding: 65px;
-    border-radius: 32px;
-    max-width: 820px;
-    margin: 0 15px;
-    box-shadow: 0 0 70px rgba(255, 0, 90, 0.6);
-}
-
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 4.4rem;
-    margin-bottom: 30px;
-    color: #ffe6ee;
-}
-
-.letter-text {
-    font-size: 1.22rem;
-    line-height: 1.95;
-}
-
-.signature {
-    margin-top: 40px;
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.6rem;
-    color: #ffd1dc;
-}
-
-/* ------------------ PETALS ------------------ */
-.petal {
-    position: absolute;
-    top: -50px;
-    font-size: 22px;
-    animation: fall linear infinite;
-    opacity: 0.85;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
-}
-
-/* ------------------ FLOATING HEARTS ------------------ */
-.heart {
-    position: absolute;
-    color: rgba(255, 182, 193, 0.35);
-    font-size: 18px;
-    animation: rise 10s linear infinite;
-}
-
-@keyframes rise {
-    from { transform: translateY(110vh); }
-    to { transform: translateY(-10vh); }
-}
-
-/* ------------------ RESPONSIVE ------------------ */
-@media (max-width: 768px) {
-
-    .rose { font-size: 70px; }
-
-    .intro-text {
-        font-size: 1.1rem;
-        line-height: 1.7;
-    }
-
-    button {
-        font-size: 1rem;
-        padding: 14px 32px;
-    }
-
-    .card {
-        padding: 40px 25px;
-        border-radius: 26px;
-    }
-
-    h1 {
-        font-size: 3.2rem;
-    }
-
-    .letter-text {
-        font-size: 1.05rem;
-    }
-
-    .signature {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 420px) {
-
-    .rose { font-size: 60px; }
-
-    h1 { font-size: 2.8rem; }
-
-    button {
-        width: 80%;
-        max-width: 260px;
-    }
+@media(max-width:420px){
+    .rose{font-size:60px}
+    h1{font-size:2.9rem}
+    button{width:80%;max-width:260px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Romantic Music -->
 <audio id="music" loop>
     <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_4c12c7d9d3.mp3" type="audio/mpeg">
 </audio>
@@ -215,15 +160,8 @@ h1 {
 <section id="intro">
     <div>
         <div class="rose">🌹</div>
-        <div class="intro-text">
-            <strong>
-                Thank you for walking into my life and turning ordinary days into something my heart cherishes.
-            </strong><br><br>
-            Thank you for making me feel special each day.<br>
-            Thank you for your love and efforts.<br>
-            Thank you for everything ❤️
-        </div>
-        <button onclick="openLetter()">Click Here 💌</button>
+        <div class="intro-text" id="typeText"></div>
+        <button onclick="openLetter()"> Yaha Click Kar 💌</button>
     </div>
 </section>
 
@@ -232,21 +170,26 @@ h1 {
     <div class="card">
         <h1>Happy Rose Day Nidhi 🌹</h1>
         <div class="letter-text">
-            <p>This rose carries every feeling I struggle to put into words.</p>
             <p>
-                You are the calm in my chaos,<br>
-                the warmth in my silence,<br>
-                and the place my heart always wants to return to.
-            </p>
-            <p>
-                Just like a rose, you are beautiful,
-                gentle, and unforgettable.
-            </p>
-            <p>
-                On this Rose Day,
-                my heart chooses you —
-                today, tomorrow, always ❤️
-            </p>
+    I don’t know how to put everything into perfect words,
+    but this rose is my way of telling you what you mean to me.
+</p>
+<p>
+    When life feels noisy or tired,<br>
+    you somehow make everything feel calmer for me.<br>
+    Just being with you feels like comfort.
+</p>
+<p>
+    You may not realize it,
+    but your care, your smile, and the little things you do
+    make my days better than you know.
+</p>
+<p>
+    On this Rose Day,<br>
+    I just want you to know that I love you so much<br>
+    even more   every day ❤️
+</p>
+
         </div>
         <div class="signature">
             Forever yours,<br>Gulshan ❤️
@@ -255,41 +198,55 @@ h1 {
 </section>
 
 <script>
-function openLetter() {
-    document.getElementById("music").play();
-    document.getElementById("intro").style.opacity = "0";
+/* TYPEWRITER INTRO */
+const text = "thank you so much for being in my life \n thank you for making me feel special everyday \n thanks for your love and efforts and thank you for everything \n❤️";
+let i=0;
+function type(){
+    if(i<text.length){
+        document.getElementById("typeText").innerHTML += text[i]==="\n"?"<br>":text[i];
+        i++;
+        setTimeout(type,40);
+    }
+}
+type();
 
-    setTimeout(() => {
-        document.getElementById("intro").style.display = "none";
-        const letter = document.getElementById("letter");
-        letter.style.opacity = "1";
-        letter.style.pointerEvents = "auto";
-        startPetals();
-        startHearts();
-    }, 1500);
+/* OPEN LETTER */
+function openLetter(){
+    document.getElementById("music").play();
+    document.getElementById("intro").style.opacity="0";
+    document.getElementById("intro").style.transform="scale(.95)";
+    setTimeout(()=>{
+        document.getElementById("intro").style.display="none";
+        const l=document.getElementById("letter");
+        l.style.opacity="1";
+        l.style.pointerEvents="auto";
+        l.style.transform="scale(1)";
+        petals();hearts();
+    },1600);
 }
 
-/* Petals */
-function startPetals() {
-    for (let i = 0; i < 50; i++) {
-        let p = document.createElement("div");
-        p.className = "petal";
-        p.innerHTML = "🌸";
-        p.style.left = Math.random() * 100 + "vw";
-        p.style.animationDuration = (6 + Math.random() * 6) + "s";
-        p.style.fontSize = (18 + Math.random() * 26) + "px";
+/* PETALS */
+function petals(){
+    for(let i=0;i<55;i++){
+        let p=document.createElement("div");
+        p.className="petal";
+        p.innerHTML="🌸";
+        p.style.left=Math.random()*100+"vw";
+        p.style.fontSize=(18+Math.random()*26)+"px";
+        p.style.animationDuration=(6+Math.random()*6)+"s";
         document.body.appendChild(p);
     }
 }
 
-/* Hearts */
-function startHearts() {
-    for (let i = 0; i < 25; i++) {
-        let h = document.createElement("div");
-        h.className = "heart";
-        h.innerHTML = "❤";
-        h.style.left = Math.random() * 100 + "vw";
-        h.style.animationDuration = (8 + Math.random() * 6) + "s";
+/* HEARTS */
+function hearts(){
+    for(let i=0;i<28;i++){
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤";
+        h.style.left=Math.random()*100+"vw";
+        h.style.fontSize=(14+Math.random()*14)+"px";
+        h.style.animationDuration=(8+Math.random()*6)+"s";
         document.body.appendChild(h);
     }
 }
